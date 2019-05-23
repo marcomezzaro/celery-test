@@ -5,4 +5,4 @@ It's intended to track down the source of https://github.com/andymccurdy/redis-p
 
 The Celery daemon is being run with the command: `celery -A tasks worker --loglevel=debug`
 
-To enqueue a new tasks, run `python add_task.py`
+To enqueue a new task, run `python add_task.py`
