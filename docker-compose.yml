@@ -1,0 +1,27 @@
+version: '3'
+services:
+  celery-test-worker:
+    build: ./dockerfiles/celery-test/
+    networks:
+      - private
+    volumes:
+      - .:/opt
+    depends_on:
+      - haproxy
+  redis:
+    build: ./dockerfiles/redis
+    container_name: redis
+    ports:
+      - "6379"
+    networks:
+      - private  
+  haproxy:
+    build: ./dockerfiles/haproxy/
+    container_name: haproxy
+    networks:
+      - private
+    depends_on:
+      - redis
+
+networks:
+  private:

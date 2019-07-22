@@ -1,8 +1,13 @@
 from celery import Celery
+import celeryconfig
 
 
-app = Celery('tasks', broker='redis://localhost:6379/0')
-
+try:
+    app = Celery('tasks')
+    app.config_from_object(celeryconfig)
+except Exception as e:
+    sys.exit(5)
+    # print(str(e))
 
 @app.task
 def add(x, y):
